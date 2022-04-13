@@ -6,6 +6,10 @@ $medics = MedicData::getAll();
 
 $statuses = StatusData::getAll();
 $payments = PaymentData::getAll();
+$medics = MedicData::getAll();
+$categories = CategoryData::getAll();
+$locations = LocationData::getAll();
+
 
 ?>
 
@@ -18,28 +22,33 @@ $payments = PaymentData::getAll();
                 <h4>Nueva Cita</h4>
             </div>
             <div class="card-content table-responsive">
-                <form class="form-horizontal" role="form" method="post" action="./?action=addreservation">
+                <form class="form-horizontal" role="form" method="post" action="core/app/action/addres-action.php">
                     <div class="form-group">
-                        <label for="inputEmail1" class="col-lg-2 control-label">Asunto</label>
-                        <div class="col-lg-10">
-                            <input type="text" name="title" required class="form-control" id="inputEmail1" placeholder="Asunto">
+                        <label for="inputEmail1" class="col-lg-2 control-label">Area*</label>
+                        <div class="col-md-6">
+                            <select name="category_id" id="category_id" class="form-control">
+                                <option value="">-- SELECCIONE --</option>
+                                <?php foreach($categories as $cat):?>
+                                    <option value="<?php echo $cat->id; ?>"><?php echo $cat->name; ?></option>
+                                <?php endforeach;?>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="inputEmail1" class="col-lg-2 control-label">Paciente</label>
-                        <div class="col-lg-10">
-                            <select name="pacient_id" class="form-control" required>
+                        <label for="inputEmail1" class="col-lg-2 control-label">Ubicacion*</label>
+                        <div class="col-md-6">
+                            <select name="idubicacion" id="idubicacion" class="form-control">
                                 <option value="">-- SELECCIONE --</option>
-                                <?php foreach($pacients as $p):?>
-                                    <option value="<?php echo $p->id; ?>"><?php echo $p->id." - ".$p->name." ".$p->lastname; ?></option>
-                                <?php endforeach; ?>
+                                <?php foreach($locations as $cat):?>
+                                    <option value="<?php echo $cat->id; ?>"><?php echo $cat->name; ?></option>
+                                <?php endforeach;?>
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputEmail1" class="col-lg-2 control-label">Medico</label>
-                        <div class="col-lg-10">
-                            <select name="medic_id" class="form-control" required>
+                        <div class="col-lg-6">
+                            <select name="medic_id" id="medic_id" class="form-control" required>
                                 <option value="">-- SELECCIONE --</option>
                                 <?php foreach($medics as $p):?>
                                     <option value="<?php echo $p->id; ?>"><?php echo $p->id." - ".$p->name." ".$p->lastname; ?></option>
@@ -48,70 +57,57 @@ $payments = PaymentData::getAll();
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="date" class="col-lg-2 control-label">Fecha</label>
-                        <div class="col-lg-10">
-                            <div id="datetimepicker12"></div>
+                        <label for="inputEmail1" class="col-lg-2 control-label"></label>
+                        <div class="col-lg-6">
+                            <table class="table table-bordered border-primary hidden" id="table_schedule_week">
+                                <caption>Horario entre semana</caption>
+                                <thead>
+                                <tr>
+                                    <th scope="col">Dias</th>
+                                    <th scope="col">Horario</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>--</td>
+                                    <td>--</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <table class="table table-bordered border-primary hidden" id="table_schedule_weekend">
+                                <caption>Horario fin de semana</caption>
+                                <thead>
+                                <tr>
+                                    <th scope="col">Dias</th>
+                                    <th scope="col">Horario</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>--</td>
+                                    <td>--</td>
+                                </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="inputEmail1" class="col-lg-2 control-label">Nota</label>
-                        <div class="col-lg-10">
-                            <textarea class="form-control" name="note" placeholder="Nota"></textarea>
+                    <label for="date" class="col-lg-2 control-label">Fecha</label>
+                    <div class="col-lg-10">
+                        <div class='input-group date' id='date_time'>
+                            <input type='hidden' class="form-control" name="date_time"/>
+                            <span class="input-group-addon">
+                              <span class="glyphicon glyphicon-calendar"></span>
+                          </span>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="inputEmail1" class="col-lg-2 control-label">Enfermedad</label>
-                        <div class="col-lg-10">
-                            <textarea class="form-control" name="sick" placeholder="Enfermedad"></textarea>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputEmail1" class="col-lg-2 control-label">Sintomas</label>
-                        <div class="col-lg-10">
-                            <textarea class="form-control" name="symtoms" placeholder="Sintomas"></textarea>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputEmail1" class="col-lg-2 control-label">Medicamentos</label>
-                        <div class="col-lg-10">
-                            <textarea class="form-control" name="medicaments" placeholder="Medicamentos"></textarea>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputEmail1" class="col-lg-2 control-label">Estado de la cita</label>
-                        <div class="col-lg-10">
-                            <select name="status_id" class="form-control" required>
-                                <?php foreach($statuses as $p):?>
-                                    <option value="<?php echo $p->id; ?>"><?php echo $p->name; ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputEmail1" class="col-lg-2 control-label">Estado del pago</label>
-                        <div class="col-lg-10">
-                            <select name="payment_id" class="form-control" required>
-                                <?php foreach($payments as $p):?>
-                                    <option value="<?php echo $p->id; ?>"><?php echo $p->name; ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="inputEmail1" class="col-lg-2 control-label">Costo</label>
-                        <div class="col-lg-10">
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="fa fa-usd"></i></span>
-                                <input type="text" class="form-control" name="price" placeholder="Costo">
+                </div>
+                    
+                        <div class="form-group">
+                            <div class="col-lg-offset-2 col-lg-10">
+                                <button type="submit" class="btn btn-default">Agregar Cita</button>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-lg-offset-2 col-lg-10">
-                            <button type="submit" class="btn btn-default">Agregar Cita</button>
-                        </div>
-                    </div>
                 </form>
             </div>
         </div>
@@ -121,9 +117,53 @@ $payments = PaymentData::getAll();
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment-with-locales.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
 <script>
-    $('#datetimepicker12').datetimepicker({
+    $('#date_time').datetimepicker({
         inline: true,
         sideBySide: true,
         locale: 'es-GT'
+    });
+    
+    $('#idubicacion').on('change', function(){
+        let ubicacion_id = this.value;
+        let especialidad_id = $("#category_id").val();
+        $.ajax({
+            type: "POST",
+            url: "core/app/model/MedicA.php",
+            data:{ubicacion_id, especialidad_id},
+            success: function(result){
+                $("#medic_id").html(result);
+            }
+        });
+    });
+
+    $('#medic_id').on('change', function(){
+        const medic_id = this.value;
+        const tdWeek = document.querySelectorAll('#table_schedule_week tbody tr td');
+        const tableWeek = document.querySelector('#table_schedule_week');
+
+        const tableWeekend = document.querySelector('#table_schedule_weekend');
+        const tdWeekend = document.querySelectorAll('#table_schedule_weekend tbody tr td');
+
+        $.ajax({
+            type: "POST",
+            url: "core/app/model/ajaxScheduleMedic.php",
+            data:{medic_id},
+            success: function(result){
+                const {esemana, week_start, week_end, fsemana, weekend_start, weekend_end} = JSON.parse(result)
+
+                tdWeek[0].textContent = esemana;
+                tdWeek[1].textContent = `${week_start} a ${week_end}`;
+                tableWeek.classList.remove('hidden');
+
+                if(fsemana != ''){
+                    tdWeekend[0].textContent = fsemana;
+                    tdWeekend[1].textContent = `${weekend_start} a ${weekend_end}`;
+                    tableWeekend.classList.remove('hidden');
+                }else{
+                    tableWeekend.classList.add('hidden');
+                }
+            }
+        });
+
     });
 </script>

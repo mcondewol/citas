@@ -12,7 +12,7 @@ require_once __DIR__ . '/../../../vendor/phpmailer/phpmailer/src/Exception.php';
 require_once __DIR__ . '/../../../vendor/phpmailer/phpmailer/src/PHPMailer.php';
 require_once __DIR__ . '/../../../vendor/phpmailer/phpmailer/src/SMTP.php';
 include "../../autoload.php";
-include '../model/ReservationData.php';
+include '../model/ReservationData.php'; 
 include '../model/PacientData.php';
 
 // passing true in constructor enables exceptions in PHPMailer
@@ -22,7 +22,7 @@ $datet = explode(" ",$_POST["date_time"]);
 $rx = ReservationData::getRepeated($_POST["medic_id"],$datet[0],$datet[1]);
 $dia = ReservationData::getDia($_POST["medic_id"],$datet[0],$datet[1]);
 if($dia == null){
-    Core::alert('El medico Seleccionado no cuenta con disponiblidad el día seleccionado');
+    Core::alert('El medico Seleccionado no cuenta con disponiblidad el día seleccionadooooo');
 
 } else {
     if($rx == null){
@@ -45,7 +45,6 @@ if($dia == null){
         $r->add();
         echo json_encode($_SESSION);
         // $pacient = PacientData::getById($_SESSION['user_id']);
-        echo "asdas";
         try {
             // Server settings
             $mail->isSMTP();
@@ -59,7 +58,7 @@ if($dia == null){
         
             // Sender and recipient settings
             $mail->setFrom('support@wolvisor.com', 'Aprofam');
-            $mail->addAddress($pacient->email, '');
+            $mail->addAddress($_SESSION['email'], '');
             
             // Setting the email content
             $mail->IsHTML(true);
@@ -76,11 +75,11 @@ if($dia == null){
             echo "Error in sending email. Mailer Error: {$mail->ErrorInfo}";
         }
         Core::alert("Agregado exitosamente!");
-        Core::redir("/Citas-AP/index.php");
+        Core::redir("/citas/index.php?view=reservations");
     }else{
         echo "else";
         Core::alert("Error al agregar, Cita Repetida!");
-        Core::redir("/Citas-AP/AgendarCita.php");
+        Core::redir("/citas/index.php?view=reservations");
     }
 }
 

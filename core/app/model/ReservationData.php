@@ -79,7 +79,7 @@ class ReservationData {
 
 
 	public static function getAllByPacientId($id){
-		$sql = "select * from ".self::$tablename." where pacient_id=$id order by date_at";
+		$sql = "select * from ".self::$tablename." where pacient_id=$id order by date_at DESC";
 		$query = Executor::doit($sql);
 		return Model::many($query[0],new ReservationData());
 	}
