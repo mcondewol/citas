@@ -1054,7 +1054,7 @@ class PHPMailer
      *
      * @return bool true on success, false if address already used or invalid in some way
      */
-    public function addReplyTo($address, $name = '')
+    public function addReplyTo($address, $name = '') 
     {
         return $this->addOrEnqueueAnAddress('Reply-To', $address, $name);
     }
