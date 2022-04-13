@@ -30,12 +30,12 @@ if(Session::getUID()!=""){
                           <p>Registro</p>
                       </a>
                   </li>
-				  <li>
-                      <a href="./AgendarCitaNo.php">
+				          <li>
+                      <a href="index.php?view=citasno">
                           <i class="fa fa-calendar"></i>
                           <p>Citas- No</p>
                       </a>
-                    </li>
+                  </li>
                   
               </ul>
         </div>
@@ -101,7 +101,7 @@ if(Session::getUID()!=""){
                                     <input class="form-control" placeholder="Contraseña" name="password" type="password" value="">
                                 </div>
                                 <input class="btn btn-primary btn-block" type="submit" value="Iniciar Sesion"> 
-                                <a href="./RegistrarPaciente.php"> Nuevo Registro </a>
+                                <a href="index.php?view=newpacient"> Nuevo Registro </a>
                             </fieldset>
                         </form>
                           

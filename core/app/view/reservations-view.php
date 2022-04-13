@@ -19,7 +19,6 @@
   </div>
   <div class="card-content table-responsive">
 <a href="./index.php?view=newreservation" class="btn btn-info">Nueva Cita</a>
-<a href="./index.php?view=oldreservations" class="btn btn-default">Citas Anteriores</a>
 <br><br>
 <form class="form-horizontal" role="form">
 <input type="hidden" name="view" value="reservations">
@@ -143,7 +142,7 @@ if($_GET["q"]!=""||$_GET["pacient_id"]!="" ||$_GET["medic_id"]!="" ){
 
 
 		}else{
-			echo "<p class='alert alert-danger'>No hay pacientes</p>";
+			echo "<p class='alert alert-danger'>No hay citas</p>";
 		}
 
 

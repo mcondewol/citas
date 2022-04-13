@@ -27,7 +27,7 @@ if(count($_POST)>0){
 	$user->add();
 
 	Core::alert("¡Usuario Agreado Exitosamente!");
-	Core::redir("/CITAS-AP/index.php");
+	Core::redir("/citas/index.php");
 
 }
 

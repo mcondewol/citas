@@ -75,11 +75,11 @@ if($dia == null){
             echo "Error in sending email. Mailer Error: {$mail->ErrorInfo}";
         }
         Core::alert("Agregado exitosamente!");
-        Core::redir("/citas/index.php?view=reservations");
+        Core::redir("/citas/index.php?view=citasno");
     }else{
         echo "else";
         Core::alert("Error al agregar, Cita Repetida!");
-        Core::redir("/citas/index.php?view=reservations");
+        Core::redir("/citas/index.php?view=citasno");
     }
 }
 

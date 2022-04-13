@@ -11,7 +11,7 @@ $categories = CategoryData::getAll();
 $locations = LocationData::getAll();
 
 
-?>
+?> 
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.css">
 <link href="assets/css/material-dashboard.css" rel="stylesheet"/>

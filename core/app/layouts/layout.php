@@ -50,7 +50,7 @@
                       </a>
                   </li>
                     <li>
-                      <a href="./AgendarCitaNo.php">
+                      <a href="index.php?view=citasno">
                           <i class="fa fa-calendar"></i>
                           <p>Citas- No</p>
                       </a>

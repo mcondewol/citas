@@ -14,7 +14,7 @@
                       <a href="index.php?view=login">
                           <i class="fa fa-user"></i>
                           <p>Login</p>
-                      </a>
+                      </a> 
                   </li>
                   <li class="">
                       <a href="index.php?view=newpacient">
@@ -23,7 +23,7 @@
                       </a>
                   </li>
                   <li class="">
-                        <a href="./AgendarCitaNo.php">
+                        <a href="index.php?view=citasno">
                           <i class="fa fa-calendar"></i>
                           <p>Citas- No</p>
                       </a>
@@ -46,36 +46,12 @@
             <a class="navbar-brand" href="./"><b>Sistema de Citas Medicas</b></a>
           </div>
           <div class="collapse navbar-collapse">
-            <!-- <ul class="nav navbar-nav navbar-right">
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <i class="fa fa-user"></i>
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a href="logout.php">Salir</a></li>
-                </ul>
-              </li>
-            </ul> -->
-<!--
-            <form class="navbar-form navbar-right" role="search">
-              <div class="form-group  is-empty">
-                <input type="text" class="form-control" placeholder="Search">
-                <span class="material-input"></span>
-              </div>
-              <button type="submit" class="btn btn-white btn-round btn-just-icon">
-                <i class="fa fa-search"></i><div class="ripple-container"></div>
-              </button>
-            </form>
-            -->
           </div>
         </div>
       </nav>
 
       <div class="content">
-              <?php
-
-?>
-
+              
           <div class="row w-100 bgstyle01">
 
               <div class="col-md-12">
