@@ -1,0 +1,55 @@
+
+
+/*===---   GENERAL   ---===*/
+
+button.btn.btn-primary, button.btn.btn-default, .btn.btn-info {
+    background: #115fcb;
+}
+
+/*===---   SIDEBAR   ---===*/
+
+img.img-fluid.main-logo {
+    max-width: 200px;
+}
+.sidebar .nav i, .off-canvas-sidebar .nav i, .sidebar .nav a i, .off-canvas-sidebar .nav a i {
+    color: #115fcb;
+}
+
+/*===---   LOGIN PAGE   ---===*/
+
+.login-page .bgstyle01.w-100 {
+    align-items: flex-start;
+    padding-top: 50px;
+}
+
+.bgstyle01.w-100 {
+    
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 120px);
+    background: url(../../img/aprofam-landing.jpg) center;
+    background-size: cover;
+}
+
+/*===---   LANDING PAGE   ---===*/
+
+.login-page .bgstyle01 .card {
+    max-width: 500px;
+    margin: 30px;
+}
+
+/*===---   NUEVO PACIENTE   ---===*/
+
+body > div.wrapper > div.main-panel > div > div > div > div > div.card-header {
+    background: linear-gradient( 
+60deg, #2a6cc7, #115fcb);
+    box-shadow: 0 12px 20px -10px rgb(0 61 212 / 28%), 0 4px 20px 0px rgb(0 0 0 / 12%), 0 7px 8px -5px rgb(0 95 212 / 20%);
+}
+
+/*===---   MAIN CONTENT   ---===*/
+
+.card .card-header[data-background-color] {
+    background: linear-gradient( 
+60deg, #2a6cc7, #115fcb);
+    box-shadow: 0 12px 20px -10px rgb(0 61 212 / 28%), 0 4px 20px 0px rgb(0 0 0 / 12%), 0 7px 8px -5px rgb(0 95 212 / 20%);
+}
