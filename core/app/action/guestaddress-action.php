@@ -43,7 +43,6 @@ if($dia == null){
         $r->symtoms = '';
         $r->medicaments = '';
         $r->add();
-        echo json_encode($_SESSION);
         // $pacient = PacientData::getById($_SESSION['user_id']);
         try {
             // Server settings

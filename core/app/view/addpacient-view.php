@@ -17,7 +17,7 @@ if(count($_POST)>0){
 	$user->gender = $_POST["gender"];
 	$user->day_of_birth = $_POST["day_of_birth"];
 	
-	$user->DPI = $_POST["DPI"];
+	$user->dpi = $_POST["DPI"];
 	
 
 	$user->address = $_POST["address"];

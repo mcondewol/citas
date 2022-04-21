@@ -120,8 +120,9 @@
                               </div>
                               <div class="form-group">
                                   <label for="inputEmail1" class="col-lg-2 control-label">DPI*</label>
-                                  <div class="col-md-6">
-                                  <input type="text" name="DPI" class="form-control" id="phone1" placeholder="DPI">
+                                  <div class="col-md-6" id="dpiValidation">
+                                  <input type="text" name="DPI" class="form-control" id="dpi" placeholder="DPI">
+                                  
                                   </div>
                               </div>
 
@@ -146,3 +147,23 @@
  
 
 <?php endif;?>
+
+
+<script>
+    $('#dpi').on('change', function(){
+        let dpi = this.value;
+        const dpiValidation = document.querySelector('#dpiValidation');
+        $.ajax({
+            type: "POST",
+            url: "core/app/model/checkDPI.php",
+            data:{dpi,},
+            success: function(result){
+                let boolDpi = result;
+                if (boolDpi) {
+                    let span = '<span class="danger">*Este DPI ya existe</span>';
+                    dpiValidation.innerHTML += span;
+                }
+            }
+        });
+    });
+</script>
