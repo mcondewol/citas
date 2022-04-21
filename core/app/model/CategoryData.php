@@ -15,7 +15,7 @@ class CategoryData {
 		$sql = "insert into category (name, usering, fechaing) ";
 		$sql .= "values (\"$this->name\",\"$this->iduser\",now())";
 		return Executor::doit($sql);
-	}
+	} 
 
 	public static function delById($id){
 		$sql = "delete from ".self::$tablename." where id=$id";
