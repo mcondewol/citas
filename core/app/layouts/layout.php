@@ -52,7 +52,7 @@
                     <li>
                       <a href="index.php?view=citasno">
                           <i class="fa fa-calendar"></i>
-                          <p>Citas- No</p>
+                          <p>Citas</p>
                       </a>
                     </li>
                 <?php endif; ?>
