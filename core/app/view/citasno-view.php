@@ -28,7 +28,7 @@
                   <li>
                   <a href="./AgendarCitaNo.php">
                       <i class="fa fa-calendar"></i>
-                      <p>Citas- No</p>
+                      <p>Citas</p>
                   </a>
                   </li>
               </ul>
