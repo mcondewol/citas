@@ -50,6 +50,12 @@ class PacientData {
 		return Model::one($query[0],new PacientData());
 	}
 
+	public static function getByDpi($dpi){
+		$sql = "select * from ".self::$tablename." where dpi='$dpi'";
+		$query = Executor::doit($sql);
+		return Model::one($query[0],new PacientData());
+	}
+
 
 	public static function getAll(){
 		$sql = "select * from ".self::$tablename." order by created_at desc";

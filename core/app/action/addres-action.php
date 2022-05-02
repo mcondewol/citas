@@ -22,7 +22,7 @@ $datet = explode(" ",$_POST["date_time"]);
 $rx = ReservationData::getRepeated($_POST["medic_id"],$datet[0],$datet[1]);
 $dia = ReservationData::getDia($_POST["medic_id"],$datet[0],$datet[1]);
 if($dia == null){
-    Core::alert('El medico Seleccionado no cuenta con disponiblidad el día seleccionadooooo');
+    Core::alert('El medico Seleccionado no cuenta con disponiblidad el día seleccionado');
 
 } else {
     if($rx == null){
@@ -34,7 +34,8 @@ if($dia == null){
         $r->pacient_id = $_SESSION['user_id'];
         $r->medic_id = $_POST["medic_id"];
         $r->date_at = $ymd;
-        $r->time_at = $datet[1];
+        $r->time_at = $datet[1]; 
+        $newTime = date('H:i A', strtotime($datet[1]));
         $r->user_id = 1;
         $r->status_id = 1;
         $r->payment_id = 1;
@@ -47,6 +48,7 @@ if($dia == null){
         // $pacient = PacientData::getById($_SESSION['user_id']);
         try {
             // Server settings
+            
             $mail->isSMTP();
             $mail->Host = 'smtp.gmail.com';
             $mail->SMTPAuth = true;
@@ -59,12 +61,12 @@ if($dia == null){
         
             // Sender and recipient settings
             $mail->setFrom('support@wolvisor.com', 'Aprofam');
-            $mail->addAddress($_SESSION['email'], '');
+            $mail->addAddress($_SESSION['email'], ''); 
             
             // Setting the email content
             $mail->IsHTML(true);
             $mail->Subject = "Nueva Cita";
-            $mail->Body = 'Hola '. $_SESSION['username'].' '.$_SESSION['lastname'] . ', <br> Tu cita para el día '. $datet[0]. ' en el horario de ' .$datet[1]. ' se agendo de forma exitosa. <br><br> Saludos,';
+            $mail->Body = 'Hola '. $_SESSION['username'].' '.$_SESSION['lastname'] . ', <br> Tu cita para el día '. $datet[0]. ' en el horario de ' .$newTime. ' se agendo de forma exitosa. <br><br> Saludos,';
         
             if($mail->send()){
                 echo "email enviado";

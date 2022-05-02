@@ -120,8 +120,8 @@
                               </div>
                               <div class="form-group">
                                   <label for="inputEmail1" class="col-lg-2 control-label">DPI*</label>
-                                  <div class="col-md-6" id="dpiValidation">
-                                  <input type="text" name="DPI" class="form-control" id="dpi" placeholder="DPI">
+                                  <div class="col-md-6" >
+                                  <input type="text" name="dpi" class="form-control" id="dpi" placeholder="DPI">
                                   
                                   </div>
                               </div>

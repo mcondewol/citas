@@ -28,7 +28,7 @@
                   <li>
                   <a href="./AgendarCitaNo.php">
                       <i class="fa fa-calendar"></i>
-                      <p>Citas</p>
+                      <p>Cita</p>
                   </a>
                   </li>
               </ul>
@@ -52,7 +52,7 @@
         </div>
       </nav>
 
-      <div class="content">
+      <div class="content"> 
       <?php
 
 ?>
@@ -112,6 +112,12 @@
                     </div>
                 </div>
 
+                <div class="form-group">
+                    <label for="inputEmail1" class="col-lg-2 control-label">DPI*</label>
+                    <div class="col-md-6">
+                        <input type="text" name="dpi" class="form-control" id="dpi" placeholder="DPI">
+                    </div>
+                </div>
                 <div class="form-group">
                     <label for="inputEmail1" class="col-lg-2 control-label">Telefono*</label>
                     <div class="col-md-6">
@@ -188,14 +194,12 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="date" class="col-lg-2 control-label">Fecha</label>
-                    <div class="col-lg-10">
-                        <div class='input-group date' id='date_time'>
-                            <input type='hidden' class="form-control" name="date_time"/>
-                            <span class="input-group-addon">
-                              <span class="glyphicon glyphicon-calendar"></span>
-                          </span>
-                        </div>
+                    <label for="inputEmail1" class="col-lg-2 control-label">Fecha/Hora</label>
+                    <div class="col-lg-5">
+                        <input type="date" name="date_at" value="<?php echo $reservation->date_at; ?>" required class="form-control" id="inputEmail1" placeholder="Fecha">
+                    </div>
+                    <div class="col-lg-5">
+                        <input type="time" name="time_at" value="<?php echo $reservation->time_at; ?>" required class="form-control" id="inputEmail1" placeholder="Hora">
                     </div>
                 </div>
                 <div class="form-group">
@@ -275,9 +279,3 @@ $('#date_time').datetimepicker({
 
   });
   </script>
-
-<script>
-    $(function () {
-        
-    });
-</script>
