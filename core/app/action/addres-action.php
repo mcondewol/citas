@@ -57,7 +57,6 @@ if($dia == null){
             $mail->Port = 465;
         
             $mail->Username = 'servicioalcliente@aprofam.net'; // YOUR gmail email
-            //$mail->Password = 'zhikcngxixagwwri'; // YOUR gmail password
             $mail->Password = 'Aprofam2022%'; // YOUR gmail password
         
             // Sender and recipient settings
