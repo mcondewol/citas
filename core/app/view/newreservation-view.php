@@ -91,14 +91,14 @@ $locations = LocationData::getAll();
                             </table>
                         </div>
                     </div>
-                    <div class="form-group">
+                <div class="form-group">
                     <label for="date" class="col-lg-2 control-label">Fecha</label>
                     <div class="col-lg-10">
                         <div class='input-group date' id='date_time'>
                             <input type='hidden' class="form-control" name="date_time"/>
                             <span class="input-group-addon">
                               <span class="glyphicon glyphicon-calendar"></span>
-                          </span>
+                            </span>
                         </div>
                     </div>
                 </div>

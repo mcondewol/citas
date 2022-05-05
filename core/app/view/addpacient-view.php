@@ -40,17 +40,16 @@ if(count($_POST)>0){
 		// Server settings
 		
 		$mail->isSMTP();
-		$mail->Host = 'smtp.gmail.com';
+		$mail->Host = 'mail.aprofam.net';
 		$mail->SMTPAuth = true;
 		$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
 		$mail->Port = 587;
 	
-		$mail->Username = 'support@wolvisor.com'; // YOUR gmail email
-		//$mail->Password = 'zhikcngxixagwwri'; // YOUR gmail password
-		$mail->Password = 'lmceoebvcleisjdx'; // YOUR gmail password
+		$mail->Username = 'servicioalcliente@aprofam.net'; // YOUR gmail email
+		$mail->Password = 'Aprofam2022*'; // YOUR gmail password
 	
 		// Sender and recipient settings
-		$mail->setFrom('support@wolvisor.com', 'Aprofam');
+		$mail->setFrom('servicioalcliente@aprofam.net', 'Aprofam');
 		$mail->addAddress($userEmail, ''); 
 		
 		// Setting the email content
@@ -66,6 +65,7 @@ if(count($_POST)>0){
 		
 	} catch (Exception $e) {
 		echo "Error in sending email. Mailer Error: {$mail->ErrorInfo}";
+		
 	}
 	Core::alert("¡Usuario Registrado Exitosamente!");
 	Core::redir("/citas/index.php");

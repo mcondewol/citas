@@ -95,7 +95,7 @@ if(Session::getUID()!=""){
                         <form accept-charset="UTF-8" role="form" method="post" action="core/app/view/processlogin-view.php" >
                             <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Usuario" name="mail" type="text">
+                                    <input class="form-control" placeholder="Usuario" name="email" type="email">
                                 </div>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Contraseña" name="password" type="password" value="">
@@ -107,7 +107,7 @@ if(Session::getUID()!=""){
                           
                       </div>
                   </div> 
-              </div>
+              </div> 
           </div>
 <?php else:?>
  

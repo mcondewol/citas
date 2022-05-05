@@ -18,6 +18,7 @@ include '../model/PacientData.php';
 // passing true in constructor enables exceptions in PHPMailer
 $mail = new PHPMailer(true);
 
+$mail->CharSet = 'UTF-8';
 $datet = explode(" ",$_POST["date_time"]);
 $rx = ReservationData::getRepeated($_POST["medic_id"],$datet[0],$datet[1]);
 $dia = ReservationData::getDia($_POST["medic_id"],$datet[0],$datet[1]);
@@ -50,22 +51,24 @@ if($dia == null){
             // Server settings
             
             $mail->isSMTP();
-            $mail->Host = 'smtp.gmail.com';
+            $mail->Host = 'mail.aprofam.net';
             $mail->SMTPAuth = true;
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-            $mail->Port = 587;
+            $mail->Port = 465;
         
-            $mail->Username = 'support@wolvisor.com'; // YOUR gmail email
+            $mail->Username = 'servicioalcliente@aprofam.net'; // YOUR gmail email
             //$mail->Password = 'zhikcngxixagwwri'; // YOUR gmail password
-            $mail->Password = 'lmceoebvcleisjdx'; // YOUR gmail password
+            $mail->Password = 'Aprofam2022%'; // YOUR gmail password
         
             // Sender and recipient settings
-            $mail->setFrom('support@wolvisor.com', 'Aprofam');
+            $mail->setFrom('noreply@aprofam.net', 'Aprofam');
             $mail->addAddress($_SESSION['email'], ''); 
             
             // Setting the email content
             $mail->IsHTML(true);
-            $mail->Subject = "Nueva Cita";
+            $subject = "Nueva cita";
+             $subject = utf8_decode($subject);
+             $mail->Subject = $subject;
             $mail->Body = 'Hola '. $_SESSION['username'].' '.$_SESSION['lastname'] . ', <br> Tu cita para el día '. $datet[0]. ' en el horario de ' .$newTime. ' se agendo de forma exitosa. <br><br> Saludos,';
         
             if($mail->send()){
@@ -76,6 +79,7 @@ if($dia == null){
             
         } catch (Exception $e) {
             echo "Error in sending email. Mailer Error: {$mail->ErrorInfo}";
+            
         }
         Core::alert("Agregado exitosamente!");
         Core::redir("/citas/index.php?view=reservations");

@@ -3,7 +3,6 @@
 * BookMedik
 * @author evilnapsis
 **/
-session_start();
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
@@ -18,11 +17,12 @@ include '../model/PacientData.php';
 // passing true in constructor enables exceptions in PHPMailer
 $mail = new PHPMailer(true);
 
-$date = $_POST["date_at"];
-$time = $_POST["time_at"];
+$mail->CharSet = 'UTF-8';
 
-$rx = ReservationData::getRepeated($_POST["medic_id"],$date,$time);
-$dia = ReservationData::getDia($_POST["medic_id"],$date,$time);
+$datet = explode(" ",$_POST["date_time"]);
+$rx = ReservationData::getRepeated($_POST["medic_id"],$datet[0],$datet[1]);
+$dia = ReservationData::getDia($_POST["medic_id"],$datet[0],$datet[1]);
+
 $pacientEmail = $_POST['email'];
 $pacientName = $_POST['name'];
 $pacientLastname = $_POST['lastname'];
@@ -32,6 +32,9 @@ if($dia == null){
     Core::redir("/citas/index.php?view=citasno");
 } else {
     if($rx == null){
+        $time = strtotime($datet[0]);
+        $ymd = DateTime::createFromFormat('d/m/Y', $datet[0])->format('Y-m-d');
+
 
         $pacient = new PacientData();
 
@@ -45,7 +48,7 @@ if($dia == null){
         $pacient->dpi = $pacientDpi;
 	    $pacient->add();
 
-        $timestamp = strtotime($date); 
+        $timestamp = strtotime($datet[0]); 
         $newDate = date("d-m-Y", $timestamp );
         $newTime = date('H:i A', strtotime($time));
 
@@ -56,9 +59,9 @@ if($dia == null){
             $r->note = null;
             $r->pacient_id = $pacientData->id;
             $r->medic_id = $_POST["medic_id"];
-            $r->date_at = $_POST["date_at"];
-            $r->time_at = $_POST["time_at"];
-            $newTime = date('H:i A', strtotime($_POST["time_at"]));
+            $r->date_at = $ymd;
+            $r->time_at = $datet[1]; 
+            $newTime = date('H:i A', strtotime($datet[1]));
             $r->user_id = 1;
             $r->status_id = 1;
             $r->payment_id = 1;
@@ -72,28 +75,29 @@ if($dia == null){
            
                 // Server settings
                 $mail->isSMTP();
-                $mail->Host = 'smtp.gmail.com';
+                $mail->Host = 'mail.aprofam.net';
                 $mail->SMTPAuth = true;
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
                 $mail->Port = 587;
             
-                $mail->Username = 'support@wolvisor.com'; // YOUR gmail email
-                //$mail->Password = 'zhikcngxixagwwri'; // YOUR gmail password
-                $mail->Password = 'lmceoebvcleisjdx'; // YOUR gmail password
+                $mail->Username = 'servicioalcliente@aprofam.net'; // YOUR gmail email
+                $mail->Password = 'Aprofam2022*'; // YOUR gmail password
             
                 // Sender and recipient settings
-                $mail->setFrom('support@wolvisor.com', 'Aprofam');
+                $mail->setFrom('servicioalcliente@aprofam.net', 'Aprofam');
                 $mail->addAddress($pacientEmail, '');
                 
                 // Setting the email content
                 $mail->IsHTML(true);
-                $mail->Subject = "Nueva Cita";
-                $mail->Body = 'Hola '. $pacientName.' '.$pacientLastname . ', <br> Tu cita para el día '. $newDate. ' en el horario de ' .$newTime. ' se agendo de forma exitosa. <br><br> Saludos,';
+                $subject = "Nueva cita";
+                $subject = utf8_decode($subject);
+                $mail->Subject = $subject;
+                $mail->Body = 'Hola '. $pacientName.' '.$pacientLastname . ', <br> Tu cita para el día '. $datet[0]. ' en el horario de ' .$newTime. ' se agendo de forma exitosa. <br><br> Saludos,';
             
                 if($mail->send()){
-                    echo "email enviado";
+                    $sended = true;
                 }else{
-                    echo "no se envio";
+                    $sended = false;
                 }
                 
             } catch (Exception $e) {

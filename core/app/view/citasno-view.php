@@ -194,12 +194,14 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputEmail1" class="col-lg-2 control-label">Fecha/Hora</label>
-                    <div class="col-lg-5">
-                        <input type="date" name="date_at" value="<?php echo $reservation->date_at; ?>" required class="form-control" id="inputEmail1" placeholder="Fecha">
-                    </div>
-                    <div class="col-lg-5">
-                        <input type="time" name="time_at" value="<?php echo $reservation->time_at; ?>" required class="form-control" id="inputEmail1" placeholder="Hora">
+                    <label for="date" class="col-lg-2 control-label">Fecha</label>
+                    <div class="col-lg-10">
+                        <div class='input-group date' id='date_time'>
+                            <input type='hidden' class="form-control" name="date_time"/>
+                            <span class="input-group-addon">
+                              <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
                     </div>
                 </div>
                 <div class="form-group">

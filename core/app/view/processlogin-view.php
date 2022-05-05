@@ -5,9 +5,8 @@
 include "../../autoload.php";
 session_start(); 
 if(Session::getUID()=="") {
-$user = $_POST['mail'];
+$user = $_POST['email'];
 $pass = sha1(md5($_POST['password']));
-
 $base = new Database();
 $con = $base->connect();
 $sql = "select * from pacient where (email= \"".$user."\" ) and password= \"".$pass."\" and is_active=1";
@@ -38,15 +37,15 @@ if($found==true) {
 	
 //	print $_SESSION['userid'];
 	print "Cargando ... $user";
-	header('Location: /Citas_Aprofam_user/');
+	header('Location: /citas/');
 }else {
 	//print $sql;
 	Core::alert("¡Usuario no encontrado!");
-	print "<script>window.location='/Citas_Aprofam_user/login.php';</script>";
+	print "<script>window.location='/citas/login.php';</script>";
 }
 
 }else{
-	print "<script>window.location='/Citas_Aprofam_user/index.php';</script>";
+	print "<script>window.location='/citas/index.php';</script>";
 	
 }
 ?>
