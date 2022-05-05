@@ -54,13 +54,13 @@ if($dia == null){
             $mail->Host = 'mail.aprofam.net';
             $mail->SMTPAuth = true;
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-            $mail->Port = 465;
+            $mail->Port = 587;
         
             $mail->Username = 'servicioalcliente@aprofam.net'; // YOUR gmail email
-            $mail->Password = 'Aprofam2022%'; // YOUR gmail password
+            $mail->Password = 'Aprofam2022*'; // YOUR gmail password
         
             // Sender and recipient settings
-            $mail->setFrom('noreply@aprofam.net', 'Aprofam');
+            $mail->setFrom('servicioalcliente@aprofam.net', 'Aprofam');
             $mail->addAddress($_SESSION['email'], ''); 
             
             // Setting the email content
